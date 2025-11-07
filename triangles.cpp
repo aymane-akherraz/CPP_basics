@@ -4,7 +4,7 @@ using namespace std;
 int main(void) {
 	int h, s, w, N;
 
-	cout << "Pyramid height = ";
+	cout << "Pyramid height = (Depends on your screen width)";
 	cin >> h;
 	cout << "Number of Pyramids (Depends on your screen width) = ";
 	cin >> N;
