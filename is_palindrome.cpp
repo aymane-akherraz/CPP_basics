@@ -6,7 +6,7 @@ int main(void) {
 
 	int i;
 	unsigned short int val, r_val, bit;
-	bool ispalindrome = false;
+	bool is_palindrome = false;
 
 	cout << "value = ";
 	cin >> val;
@@ -20,7 +20,7 @@ int main(void) {
 		i++;
 	}
 	ispalindrome = val == r_val; // val is a palindrome if it is equal to r_val
-	if (ispalindrome)
+	if (is_palindrome)
 		cout << val << " is a bitwise palindrome" << endl;
 	else
 		cout << val << " is not a bitwise palindrome" << endl;	
