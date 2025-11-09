@@ -8,9 +8,8 @@ bool in_banknotes(int m)
 
 int main()
 {
-	int m, div;
+	int m;
 	int banknotes[5] = {50, 20, 10, 5, 1};
-	int count[5] = {0};
 	cout << "Enter amount of money: ";
 	cin >> m;
 	if (m <= 0)
@@ -23,22 +22,12 @@ int main()
 		cout << m << endl;
 		return 0;
 	}
-	for (int i = 0; m != 0 && i < 4; i++)
-	{
-		div = m / banknotes[i];
-		if (div)
+		for(int i = 0; i < 5; i++)
 		{
-			m -= banknotes[i] * div;
-			count[i] += div;
+			while(m >= banknotes[i]) {
+				cout << banknotes[i] << ' ';
+				m -= banknotes[i];
+			}
 		}
-	}
-	if (m)
-		count[4] += m;
-	for (int i = 0; i < 5; i++)
-	{
-
-		while (count[i]--)
-			cout << banknotes[i] << ' ';
-	}
 	cout << endl;
 }
