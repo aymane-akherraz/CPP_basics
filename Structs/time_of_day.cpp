@@ -1,51 +1,42 @@
 #include <iostream>
 using namespace std;
-
-struct TIME{
-  int hour;
-  int min;
+struct TIME {
+	int h;
+	int m;
 };
-
-int main()
-{
+int main(void) {
 	TIME time;
-	int event_duration;
-
-	cout << "Enter hour: ";
-	cin >> time.hour;
-	cout << "Enter minutes: ";
-	cin >> time.min;
-	cout << "Enter event duration in minutes: ";
-	cin >> event_duration;
-	if (time.hour < 0 || time.hour > 23 || time.min < 0 || time.min > 59 || event_duration < 0)
-	{
-		cout << "Invalid input\n";
-		return 1;
+	int  dur;
+	dur = time.h = time.m = -1; 	// set all data to invalid value (to force the while loop to start)
+	while(time.h < 0 || time.h > 23) {cout << "Enter hour: ";
+		cin >> time.h;
+		if(time.h < 0 || time.h > 23)
+			cout << "Invalid hour: " << time.h << endl;
 	}
-	while (event_duration >= 60)
-	{
-		if (time.hour == 23)
-			time.hour = 0;
-		else
-			time.hour++;
-		event_duration -= 60;
+	while(time.m < 0 || time.m > 59) {
+		cout << "Enter minute: ";
+		cin >> time.m;
+		if(time.m < 0 || time.h > 59)
+			cout << "Invalid minute: " << time.m << endl;
 	}
-	while (event_duration)
-	{
-		if (time.min == 59)
-		{
-			time.min = 0;
-			time.hour++;
-		}
-		else
-			time.min++;
-		event_duration--;
+	while(dur < 0) {
+		cout << "Enter duration (minutes): ";
+		cin >> dur;
+		if(dur < 0)
+			cout << "Invalid duration: " << dur << endl;
 	}
-	if (time.hour < 10)
+	int hh = dur / 60;		// hours within duration
+	int mm = dur % 60;		// remaining minutes
+	time.m += mm;			// increment minutes
+	time.h += hh;			// increment hours
+	time.h += time.m / 60;		// update hours to reflect minutes above 59
+	time.m %= 60;			// correct minutes
+	time.h %= 24;			// correct hours
+	if(time.h < 10)
 		cout << 0;
-	cout << time.hour << ':';
-	if (time.min < 10)
+	cout << time.h << ":";
+	if(time.m < 10)
 		cout << 0;
-        cout << time.min << endl;
+	cout << time.m << endl;
 	return 0;
 }
