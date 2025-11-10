@@ -1,13 +1,14 @@
 #include <iostream>
 using namespace std;
 
-struct {
+struct TIME{
   int hour;
   int min;
-}
-time;
+};
+
 int main()
 {
+	TIME time;
 	int event_duration;
 
 	cout << "Enter hour: ";
@@ -21,5 +22,30 @@ int main()
 		cout << "Invalid input\n";
 		return 1;
 	}
-	
+	while (event_duration >= 60)
+	{
+		if (time.hour == 23)
+			time.hour = 0;
+		else
+			time.hour++;
+		event_duration -= 60;
+	}
+	while (event_duration)
+	{
+		if (time.min == 59)
+		{
+			time.min = 0;
+			time.hour++;
+		}
+		else
+			time.min++;
+		event_duration--;
+	}
+	if (time.hour < 10)
+		cout << 0;
+	cout << time.hour << ':';
+	if (time.min < 10)
+		cout << 0;
+        cout << time.min << endl;
+	return 0;
 }
