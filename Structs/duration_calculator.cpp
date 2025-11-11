@@ -12,8 +12,14 @@ int main(void) {
 	cin >> start.h >> start.m;
 	cout << "Enter end h m: ";
 	cin >> end.h >> end.m;
+	int start_min = start.h * 60 + start.m;
+	int end_min = end.h * 60 + end.m;
 
-	int dur = ((end.h * 60) + end.m) - ((start.h * 60) + start.m);
+	if (end_min <= start_min) {
+        	cout << "Bad data - sorry!" << endl;
+		return 1;
+	}
+	int dur = end_min - start_min;
 	int hh = dur / 60;		// hours within duration
 	int mm = dur % 60;		// remaining minutes
 	time.m += mm;			// increment minutes
